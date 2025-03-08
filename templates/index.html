@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dubai to the Stars 🚀</title>
+    <style>
+        body { font-family: Arial, sans-serif; background: #0B3D91; color: #FFF; padding: 20px; }
+        h1 { text-align: center; }
+        .container { max-width: 600px; margin: 0 auto; }
+        .form-group { margin-bottom: 15px; }
+        label { display: block; margin-bottom: 5px; }
+        input, select { width: 100%; padding: 10px; border: none; border-radius: 5px; }
+        button { background: #FFD700; color: #000; padding: 10px 20px; border: none; border-radius: 5px; cursor: pointer; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Dubai to the Stars 🚀</h1>
+        <form action="/book" method="POST">
+            <div class="form-group">
+                <label for="destination">Destination:</label>
+                <select id="destination" name="destination" required>
+                    {% for dest in destinations %}
+                        <option value="{{ dest.name }}">{{ dest.name }} - ${{ dest.price }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="class">Seat Class:</label>
+                <select id="class" name="class" required>
+                    <option value="Economy">Economy</option>
+                    <option value="Luxury">Luxury</option>
+                    <option value="VIP">VIP</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="date">Departure Date:</label>
+                <input type="date" id="date" name="date" required>
+            </div>
+            <button type="submit">Book Now</button>
+        </form>
+    </div>
+</body>
+</html>
