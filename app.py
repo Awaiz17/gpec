@@ -1,9 +1,12 @@
-from flask import Flask, render_template, request, redirect, url_for
+from flask import Flask, render_template, request, redirect, url_for, session
 from datetime import datetime, timedelta
 import random
 import os
 
 app = Flask(__name__)
+
+# Set a secret key for sessions
+app.secret_key = os.urandom(24)  # Generate a random secret key
 
 # Mock data for destinations and packages
 destinations = [
@@ -34,9 +37,6 @@ travel_tips = {
         "VIP": "Explore the red planet with a guided rover tour."
     }
 }
-
-# User bookings (mock database)
-user_bookings = []
 
 # Function to generate AI-based travel tips
 def generate_travel_tip(destination, seat_class):
@@ -72,21 +72,32 @@ def book():
 
     # Generate a booking ID
     booking_id = random.randint(1000, 9999)
-    user_bookings.append({
+
+    # Initialize session bookings if not already set
+    if 'bookings' not in session:
+        session['bookings'] = []
+
+    # Add the new booking to the session
+    session['bookings'].append({
         "id": booking_id,
         "destination": destination_name,
         "class": seat_class,
         "date": departure_date,
         "countdown": (departure_date_obj - datetime.now()).days,
         "accommodation": random.choice(accommodations.get(destination_name, ["Standard Room"])),
-        "travel_tip": generate_travel_tip(destination_name, seat_class)  # Add AI-based travel tip
+        "travel_tip": generate_travel_tip(destination_name, seat_class)
     })
+
+    # Save the session
+    session.modified = True
 
     return redirect(url_for('dashboard'))
 
 @app.route('/dashboard')
 def dashboard():
-    return render_template('dashboard.html', bookings=user_bookings)
+    # Retrieve bookings from the session
+    bookings = session.get('bookings', [])
+    return render_template('dashboard.html', bookings=bookings)
 
 if __name__ == '__main__':
     port = int(os.environ.get("PORT", 5000))  # Use the PORT environment variable or default to 5000
