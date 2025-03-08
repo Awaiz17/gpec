@@ -9,21 +9,24 @@
 <body>
     <div class="container">
         <h1>Dubai to the Stars 🚀</h1>
+        {% if error %}
+            <div class="error-message">
+                {{ error }}
+            </div>
+        {% endif %}
         <form action="/book" method="POST">
             <div class="form-group">
                 <label for="destination">Destination:</label>
-                <select id="destination" name="destination" required>
+                <select id="destination" name="destination" required onchange="updateSeatClasses()">
                     {% for dest in destinations %}
-                        <option value="{{ dest.name }}">{{ dest.name }} - ${{ dest.price }}</option>
+                        <option value="{{ dest.name }}" data-classes="{{ dest.class | join(',') }}">{{ dest.name }} - ${{ dest.price }}</option>
                     {% endfor %}
                 </select>
             </div>
             <div class="form-group">
                 <label for="class">Seat Class:</label>
                 <select id="class" name="class" required>
-                    <option value="Economy">Economy</option>
-                    <option value="Luxury">Luxury</option>
-                    <option value="VIP">VIP</option>
+                    <!-- Seat classes will be populated dynamically -->
                 </select>
             </div>
             <div class="form-group">
@@ -33,6 +36,30 @@
             <button type="submit">Book Now</button>
         </form>
     </div>
+
+    <script>
+        // Function to update seat classes based on the selected destination
+        function updateSeatClasses() {
+            const destinationSelect = document.getElementById("destination");
+            const classSelect = document.getElementById("class");
+            const selectedDestination = destinationSelect.options[destinationSelect.selectedIndex];
+            const seatClasses = selectedDestination.getAttribute("data-classes").split(",");
+
+            // Clear existing options
+            classSelect.innerHTML = "";
+
+            // Add new options
+            seatClasses.forEach(seatClass => {
+                const option = document.createElement("option");
+                option.value = seatClass;
+                option.text = seatClass;
+                classSelect.appendChild(option);
+            });
+        }
+
+        // Initialize seat classes on page load
+        updateSeatClasses();
+    </script>
     <footer>
         <p>Made by <a href="https://github.com/Awaiz17" target="_blank" rel="noopener noreferrer">Awaiz</a></p>
     </footer>

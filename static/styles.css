@@ -76,6 +76,7 @@ button {
 button:hover {
     background: #FFA500;
 }
+
 /* Footer Styles */
 footer {
     position: fixed;
@@ -91,9 +92,9 @@ footer {
 }
 
 footer p {
-    color: #FFF; /* White text */
-    text-shadow: 0 0 5px #FFF, 0 0 10px #FFF, 0 0 20px #FFF; /* Glowing effect */
-    margin: 0; /* Remove default margin */
+    color: #FFF;
+    text-shadow: 0 0 5px #FFF, 0 0 10px #FFF, 0 0 20px #FFF;
+    margin: 0;
 }
 
 /* Go Back Button Styles */
@@ -101,8 +102,8 @@ footer p {
     display: inline-block;
     margin-top: 20px;
     padding: 10px 20px;
-    background: #FFD700; /* Golden color */
-    color: #000; /* Black text */
+    background: #FFD700;
+    color: #000;
     text-decoration: none;
     border-radius: 5px;
     font-size: 1rem;
@@ -110,62 +111,72 @@ footer p {
 }
 
 .go-back-button:hover {
-    background: #FFA500; /* Orange on hover */
-    transform: translateY(-2px); /* Slight lift */
+    background: #FFA500;
+    transform: translateY(-2px);
 }
+
 /* Booking Styles */
 .booking {
     background: rgba(30, 144, 255, 0.2);
     border-radius: 10px;
     padding: 15px;
-    margin-bottom: 15px;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+/* Notification Pop-up Styles */
+.notification {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background: rgba(30, 144, 255, 0.9);
+    color: #FFF;
+    padding: 15px;
+    border-radius: 5px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    opacity: 0;
+    transition: opacity 0.5s ease, transform 0.5s ease;
+    display: none;
+    z-index: 1000;
+    max-width: 300px;
+    font-size: 0.9rem;
+    line-height: 1.5;
 }
 
-.booking:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+.notification.show {
+    opacity: 1;
+    transform: translateY(0);
 }
 
-.booking p {
-    margin: 10px 0;
-    font-size: 1.1rem;
-}
-
-.booking strong {
-    color: #FFD700;
-}
-
-.no-bookings {
-    text-align: center;
+/* Close Button */
+.close-button {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    background: none;
+    border: none;
+    color: #FFF;
     font-size: 1.2rem;
+    cursor: pointer;
+    padding: 0;
+    line-height: 1;
+}
+
+.close-button:hover {
     color: #FFD700;
 }
 
-/* Animations */
-@keyframes fadeIn {
-    from {
-        opacity: 0;
-        transform: translateY(20px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
+/* Show Travel Tip Button */
+.show-tip-button {
+    padding: 10px 20px;
+    background: #FFD700;
+    color: #000;
+    border: none;
+    border-radius: 5px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background 0.3s ease, transform 0.3s ease;
+    margin-top: 10px;
 }
 
-.booking {
-    animation: fadeIn 0.5s ease-in-out;
-}
-
-/* Responsive Design */
-@media (max-width: 600px) {
-    h1 {
-        font-size: 2rem;
-    }
-
-    .booking p {
-        font-size: 1rem;
-    }
+.show-tip-button:hover {
+    background: #FFA500;
+    transform: translateY(-2px);
 }
