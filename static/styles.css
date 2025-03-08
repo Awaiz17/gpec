@@ -86,9 +86,32 @@ footer {
     padding: 10px 0;
     background: rgba(0, 0, 0, 0.5);
     backdrop-filter: blur(5px);
-    color: #FFF;
     font-size: 0.9rem;
     border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+footer p {
+    color: #FFF; /* White text */
+    text-shadow: 0 0 5px #FFF, 0 0 10px #FFF, 0 0 20px #FFF; /* Glowing effect */
+    margin: 0; /* Remove default margin */
+}
+
+/* Go Back Button Styles */
+.go-back-button {
+    display: inline-block;
+    margin-top: 20px;
+    padding: 10px 20px;
+    background: #FFD700; /* Golden color */
+    color: #000; /* Black text */
+    text-decoration: none;
+    border-radius: 5px;
+    font-size: 1rem;
+    transition: background 0.3s ease, transform 0.3s ease;
+}
+
+.go-back-button:hover {
+    background: #FFA500; /* Orange on hover */
+    transform: translateY(-2px); /* Slight lift */
 }
 /* Booking Styles */
 .booking {
