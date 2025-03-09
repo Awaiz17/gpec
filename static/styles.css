@@ -1,7 +1,8 @@
 /* General Styles */
+/* General Styles */
 body {
     font-family: 'Arial', sans-serif;
-    background: linear-gradient(135deg, #0B3D91, #000033);
+    background: url('https://www.transparenttextures.com/patterns/stardust.png'), linear-gradient(135deg, #0B3D91, #000033);
     color: #FFF;
     margin: 0;
     padding: 0;
@@ -10,7 +11,9 @@ body {
     align-items: center;
     min-height: 100vh;
 }
-
+body {
+    font-family: 'Orbitron', sans-serif;
+}
 .container {
     width: 90%;
     max-width: 800px;
@@ -29,6 +32,9 @@ h1 {
     color: #FFD700;
     text-shadow: 0 0 10px #FFD700, 0 0 20px #FFD700;
 }
+
+
+
 
 /* Form Styles */
 form {
@@ -62,19 +68,22 @@ input:focus, select:focus {
     background: rgba(255, 255, 255, 0.3);
 }
 
-button {
-    padding: 10px 20px;
+button, .go-back-button, .show-tip-button {
     background: #FFD700;
     color: #000;
     border: none;
     border-radius: 5px;
-    font-size: 1.1rem;
+    padding: 10px 20px;
+    font-size: 1rem;
     cursor: pointer;
-    transition: background 0.3s ease;
+    transition: background 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 0 10px #FFD700, 0 0 20px #FFD700;
 }
 
-button:hover {
+button:hover, .go-back-button:hover, .show-tip-button:hover {
     background: #FFA500;
+    transform: translateY(-2px);
+    box-shadow: 0 0 20px #FFA500, 0 0 40px #FFA500;
 }
 
 /* Footer Styles */
@@ -89,6 +98,7 @@ footer {
     backdrop-filter: blur(5px);
     font-size: 0.9rem;
     border-top: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
 }
 
 footer p {
@@ -116,10 +126,30 @@ footer p {
 }
 
 /* Booking Styles */
+/* Card Animation */
 .booking {
     background: rgba(30, 144, 255, 0.2);
     border-radius: 10px;
     padding: 15px;
+    margin-bottom: 15px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    animation: float 3s ease-in-out infinite;
+}
+
+@keyframes float {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+.booking:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+    background: rgba(30, 144, 255, 0.4);
 }
 /* Notification Pop-up Styles */
 .notification {
@@ -179,4 +209,35 @@ footer p {
 .show-tip-button:hover {
     background: #FFA500;
     transform: translateY(-2px);
+}
+/* Loading Animation */
+.loading {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.spinner {
+    border: 4px solid rgba(255, 255, 255, 0.3);
+    border-top: 4px solid #FFD700;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
 }

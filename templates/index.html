@@ -1,11 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
+    
 <head>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dubai to the Stars 🚀</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
 </head>
+
 <body>
     <div class="container">
         <h1>Dubai to the Stars 🚀</h1>
@@ -36,8 +40,12 @@
             <button type="submit">Book Now</button>
         </form>
     </div>
-
+    <div id="loading" class="loading">
+        <div class="spinner"></div>
+    </div>
+    
     <script>
+        
         // Function to update seat classes based on the selected destination
         function updateSeatClasses() {
             const destinationSelect = document.getElementById("destination");
@@ -59,6 +67,21 @@
 
         // Initialize seat classes on page load
         updateSeatClasses();
+    </script>
+    <script>
+        // Show loading animation
+function showLoading() {
+    document.getElementById("loading").style.display = "flex";
+}
+
+// Hide loading animation
+function hideLoading() {
+    document.getElementById("loading").style.display = "none";
+}
+
+// Example usage
+showLoading();
+setTimeout(hideLoading, 2000); // Simulate a 2-second loading time
     </script>
     <footer>
         <p>Made by <a href="https://github.com/Awaiz17" target="_blank" rel="noopener noreferrer">Awaiz</a></p>
